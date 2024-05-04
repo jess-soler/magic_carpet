@@ -7,15 +7,20 @@
 """
 
 #--------------------------ADDITIONS TO CONSIDER FOR MY GITHUB OVER THE SUMMER-----------------------------------#
+
 # Things I can add to the game:
 # different styles of carpets (persian, jute, etc.)
 # do the different styles of carpets have different attributes?
 
-# enchantments that can be added to the carpet to make it fly faster, higher, etc.
+# enchantment levels that can be added to the carpet to make it fly faster, higher, etc.
 # obstacles (birds, clouds, UFO, airplane, etc.)
 # weather (sunny, rainy, snowy, etc.)
 
+# different destinations (mountains, beach, desert, etc.)
+# miles requried to get to each destination
+# energy required per mile
 
+# images and sounds
 
 
 # --------------------------IMPORTS-----------------------------------#
@@ -39,6 +44,11 @@ class user_carpet:
         console.print(f"{self.pilot_name} is ready to take off.")
         console.print("Please keep your arms and legs inside the magic carpet at all times.")
         console.print("The magic carpet is taking off.")
+        
+        # things I can add:
+        # if you have too many passengers, you can't take off
+        # destination
+        # check for enough energy to take off
         
         game_play.play_menu(self)
     
@@ -66,21 +76,50 @@ class user_carpet:
     def land(self):
         """ Method to land the magic carpet """
         console.print("The magic carpet is landing.")
+        
+        # things I can add:
+        # crash landing
+        # speed and altitude have to be at certain levels to land
+        # if energy is too low, emergency landing
+        
         game_play.play_menu(self)
     
     def speed(self):
         """ Method to adjust the speed of the magic carpet """
         console.print("The magic carpet is adjusting its speed.")
+        
+        # things I can add:
+        # if speed is too high, you can't adjust altitude
+        # if speed is too high, you can't land
+        # if speed is too low, you can't take off
+        # if speed is too low, you can't adjust altitude
+        # if speed is too low, you can't land
+        # if energy is too low, you can't adjust speed
+        
         game_play.play_menu(self)
     
     def energy(self):
         """ Method to adjust the energy of the magic carpet """
         console.print("The magic carpet is adjusting its energy.")
+        
+        # things I can add:
+        # console bar to show current energy levels
+        # if energy is too low, you can't take off
+        # if energy is too low, you can't adjust altitude
+        # if energy is too low, you can't adjust speed
+        # number of passengers affects energy level
+        
         game_play.play_menu(self)
         
     def recharge(self):
         """ Method to recharge the energy of the magic carpet """
         console.print("The magic carpet is recharging its energy.")
+        
+        # things I can add:
+        # time it takes to recharge
+        # different enchantment levels have different recharge times and battery size
+        # if charging the carpet is not flying
+        
         game_play.play_menu(self)
         
     def exit(self):
