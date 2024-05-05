@@ -22,21 +22,7 @@ from time import sleep
 
 # images and sounds
 
-# destinations---
-# station 1: mountains
-# station 2: beach
-# station 3: desert
-# station 4: forest
-# station 5: city
-# station 6: countryside
-# station 7: home
 
-# station 6 is 15 mins from home
-# station 5 is 30 mins from home
-# station 4 is 45 mins from home
-# station 3 is 1 hour from home
-# station 2 is 1.5 hours from home
-# station 1 is 2 hours from home
 
 # EACH TIME YOU FLY== SUBTRACT FROM THE BATERY LEVEL
 # EACH TIME YOU FLY YOU MUST CHECK IF YOU HAVE ENOUGH BATTERY
@@ -56,6 +42,26 @@ from time import sleep
 # adjust speed and altitude
 # land
 
+
+
+            
+            # things I can add:
+            # different enchantment levels have different recharge times and battery size
+            # if carpet hasn't been landed, it cannot charge
+            # if carpet is charging, it cannot take off
+            # if carpet is charging, it cannot adjust altitude
+            # if carpet is charging, it cannot adjust speed
+            # if carpet is charging, it cannot land
+            # if carpet is charging, it cannot fly
+            
+                              
+        # things I can add:
+        # console bar to show current energy levels
+        # if energy is too low, you can't take off
+        # if energy is too low, you can't adjust altitude
+        # if energy is too low, you can't adjust speed
+        # number of passengers affects energy level
+        
 
 
 # --------------------------IMPORTS-----------------------------------#
@@ -163,14 +169,6 @@ class self:
         else:
             console.print("Your energy level is at 50%. You can fly for 15 minutes.")
             
-                  
-        # things I can add:
-        # console bar to show current energy levels
-        # if energy is too low, you can't take off
-        # if energy is too low, you can't adjust altitude
-        # if energy is too low, you can't adjust speed
-        # number of passengers affects energy level
-        
         game_play.play_menu(self)
         
 #------------------------------------RECHARGE---------------------------------------------#   
@@ -181,7 +179,6 @@ class self:
             console.print("Your battery is already at 100%. You cannot recharge.")
             game_play.play_menu(self)
         else:
-            
             console.print("The magic carpet is recharging its energy. . .")
             sleep(2)
             console.print(". . .")
@@ -190,24 +187,59 @@ class self:
             sleep(2)
             console.print(". . .")
             
-            self.current_battery = self.random_battery + 10
+            self.current_battery = self.current_battery + 10
             console.print(f"\nYour magic carpet's battery level is now at {self.current_battery}%.")
             
             if self.current_battery < 50:
                 console.print("\nBecause your battery level is still below 50%.")
                 console.print("You must recharge again.")
-
-            
-            # things I can add:
-            # time it takes to recharge
-            # different enchantment levels have different recharge times and battery size
-            # if carpet hasn't been landed, it cannot charge
-            # if carpet is charging, it cannot take off
-            # if carpet is charging, it cannot adjust altitude
-            # if carpet is charging, it cannot adjust speed
-            # if carpet is charging, it cannot land
-            # if carpet is charging, it cannot fly
                 
+        game_play.play_menu(self)
+        
+#------------------------------------DESTINATION---------------------------------------------#
+    def destination(self):
+        """ Method to pick a destination for the magic carpet """
+        
+        # display destinations
+        console.print("You must now pick a destination for your magic carpet.")
+        console.print("\nThe magic carpet has the following destinations:")
+        console.print("1. Mountains")
+        console.print("2. Beach")
+        console.print("3. Desert")
+        console.print("4. Forest")
+        console.print("5. City")
+        console.print("6. Countryside")
+        #console.print("7. Home")
+        
+        # get user input
+        self.destination = utils.get_int("\nPlease select a destination from the list: ")
+        
+        # determine if there is enough energy
+        if self.current_battery < 50:
+            console.print("Your battery level is too low. You must recharge.")
+            game_play.play_menu(self)
+        elif self.destination == 1 and self.current_battery == 100:
+            console.print("You have selected the Mountains.")
+            console.print("Please prepare of take off.")
+        elif self.destination == 2 and self.current_battery >= 90:
+            console.print("You have selected the Beach.")
+            console.print("Please prepare of take off.")
+        elif self.destination == 3 and self.current_battery >= 80:
+            console.print("You have selected the Desert.")
+            console.print("Please prepare of take off.")
+        elif self.destination == 4 and self.current_battery >= 70:
+            console.print("You have selected the Forest.")
+            console.print("Please prepare of take off.")
+        elif self.destination == 5 and self.current_battery >= 60:
+            console.print("You have selected the City.")
+            console.print("Please prepare of take off.")
+        elif self.destination == 6 and self.current_battery >= 50:
+            console.print("You have selected the Countryside.")
+            console.print("Please prepare of take off.")
+        else:
+            console.print("Your battery level is too low for this destination. Please recharge.")
+            game_play.play_menu(self)
+        
         game_play.play_menu(self)
 
 #------------------------------------EXIT---------------------------------------------#        

@@ -15,8 +15,6 @@ console = Console()
 
 #---------------------------STORYLINE---------------------------------#
 
-
-
 #------------------------------INTRO-----------------------------------#
 def intro():
     # PRINT TITLE
@@ -71,13 +69,14 @@ def display_menu():
     
     #print menu options
     console.print("\n[bold blue]Menu Options:[/bold blue]")
-    console.print("1. Take off")
-    console.print("2. Adjust altitude")
-    console.print("3. Land")
-    console.print("4. Adjust speed")
-    console.print("5. Adjust energy")
-    console.print("6. Recharge")
-    console.print("7. Exit")
+    console.print("1. Check Energy Level")
+    console.print("2. Recharge")
+    console.print("3. Pick A Destination")
+    console.print("4. Take Off")
+    console.print("5. Adjust Speed")
+    console.print("6. Adjust Altitude")
+    console.print("7. Land")
+    console.print("8. Exit")
     
     menu_choice = utils.get_int("\nPlease select an option from the menu: ")
     return menu_choice
@@ -87,13 +86,14 @@ def run_menu(user_carpet, menu_choice):
     
     #dictionary for menu options
     menu = {
-        1: user_carpet.take_off,
-        2: user_carpet.altitude,
-        3: user_carpet.land,
-        4: user_carpet.speed,
-        5: user_carpet.energy,
-        6: user_carpet.recharge,
-        7: user_carpet.exit
+        1: user_carpet.battery_level,
+        2: user_carpet.recharge,
+        3: user_carpet.destination,
+        4: user_carpet.take_off,
+        5: user_carpet.speed,
+        6: user_carpet.altitude,
+        7: user_carpet.land,
+        8: user_carpet.exit
     }
     
     # user choice is in the menu dictionary
