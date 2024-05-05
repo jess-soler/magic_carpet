@@ -9,7 +9,7 @@
 from rich.console import Console
 
 import utils
-from magic_carpet_class import user_carpet
+from magic_carpet_class import self
 
 console = Console()
 
@@ -40,16 +40,26 @@ def get_input():
     color = utils.get_string("What color is your magic carpet? ")
 
     # create an instance of the MagicCarpet class
-    simulation_carpet = user_carpet(pilot_name, occupancy, color)
+    simulation_carpet = self(pilot_name, occupancy, color)
 
     # return to main
     return simulation_carpet
 
-
-
-
-
-
+#------------------------------STORY LINE-----------------------------------#
+def story_line():
+    # STORY LINE
+    console.print("\nYour magic carpet is preparing for take off.")
+    console.print("You must check the battery level of your magic carpet.")
+    console.print("\nIf your battery level is at 100%, you can fly for 2 hours.")
+    console.print("If your battery level is at 90%, you can fly for 1.5 hours.")
+    console.print("If your battery level is at 80%, you can fly for 1 hour.")
+    console.print("If your battery level is at 70%, you can fly for 45 minutes.")
+    console.print("If your battery level is at 60%, you can fly for 30 minutes.")
+    console.print("If your battery level is at 50%, you can fly for 15 minutes.")
+    console.print("If your battery level is below 50%, you must recharge.")
+        
+    # return to main
+    return "\n"
 
 
 

@@ -22,6 +22,10 @@ game_play.intro()
 # creates an object of the MagicCarpet class
 user_carpet = game_play.get_input()
 
+game_play.story_line()
+
+battery = user_carpet.battery_level()
+
 # display menu, get choice, run function
 # need to send object into dictionary menu choice somehow?
 game_play.play_menu(user_carpet)
