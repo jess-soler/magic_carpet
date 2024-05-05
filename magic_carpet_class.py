@@ -39,6 +39,22 @@ from time import sleep
 # station 1 is 2 hours from home
 
 # EACH TIME YOU FLY== SUBTRACT FROM THE BATERY LEVEL
+# EACH TIME YOU FLY YOU MUST CHECK IF YOU HAVE ENOUGH BATTERY
+
+# MENU: (REORDER-- ADD DESTINATIONS TO MENU-- that calls take off??)
+# check energy
+#     DONE
+
+# recharge
+#      DONE
+
+# take off
+#   list destinations and battery required
+#   can only go from home to destination and back
+#   subtract battery level required to get to destination
+
+# adjust speed and altitude
+# land
 
 
 
