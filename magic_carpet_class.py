@@ -66,7 +66,8 @@ from time import sleep
 
 # --------------------------IMPORTS-----------------------------------#
 from rich.console import Console
-from rich.panel import Panel
+from rich.progress import Progress
+from rich.progress import track
 import game_play
 import utils
 from random import randint
@@ -180,6 +181,10 @@ class self:
             game_play.play_menu(self)
         else:
             console.print("The magic carpet is recharging its energy. . .")
+            
+            for i in track(range(100)):
+                sleep(0.05)
+            
             sleep(2)
             console.print(". . .")
             sleep(2)
