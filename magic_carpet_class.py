@@ -20,47 +20,27 @@ from time import sleep
 # obstacles (birds, clouds, UFO, airplane, etc.)
 # weather (sunny, rainy, snowy, etc.)
 
-# images and sounds
+# things I can add:
+# console bar to show current energy levels
+# if energy is too low, you can't take off
+# if energy is too low, you can't adjust altitude
+# if energy is too low, you can't adjust speed
+# number of passengers affects energy level
 
 
-
+#TODO:
 # EACH TIME YOU FLY== SUBTRACT FROM THE BATERY LEVEL
 # EACH TIME YOU FLY YOU MUST CHECK IF YOU HAVE ENOUGH BATTERY
-
-# MENU: (REORDER-- ADD DESTINATIONS TO MENU-- that calls take off??)
-# check energy
-#     DONE
-
-# recharge
-#      DONE
+# must be certain speed and altitude to land
 
 # take off
 #   list destinations and battery required
-#   can only go from home to destination and back
+#   can only go from home to destination
 #   subtract battery level required to get to destination
 
 # adjust speed and altitude
-# land
+# land 
 
-
-
-            
-            # things I can add:
-            # different enchantment levels have different recharge times and battery size
-            # if carpet hasn't been landed, it cannot charge
-            # if carpet is charging, it cannot take off
-            # if carpet is charging, it cannot adjust altitude
-            # if carpet is charging, it cannot adjust speed
-            # if carpet is charging, it cannot land
-            # if carpet is charging, it cannot fly
-            
-                              
-        # things I can add:
-        # console bar to show current energy levels
-        # if energy is too low, you can't take off
-        # if energy is too low, you can't adjust altitude
-        # if energy is too low, you can't adjust speed
-        # number of passengers affects energy level
         
 
 
@@ -180,17 +160,11 @@ class self:
             console.print("Your battery is already at 100%. You cannot recharge.")
             game_play.play_menu(self)
         else:
-            console.print("The magic carpet is recharging its energy. . .")
+            console.print("The magic carpet is recharging its energy...")
             
             for i in track(range(100)):
                 sleep(0.05)
             
-            sleep(2)
-            console.print(". . .")
-            sleep(2)
-            console.print(". . .")
-            sleep(2)
-            console.print(". . .")
             
             self.current_battery = self.current_battery + 10
             console.print(f"\nYour magic carpet's battery level is now at {self.current_battery}%.")
