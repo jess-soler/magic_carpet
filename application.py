@@ -27,7 +27,6 @@ game_play.story_line()
 battery = user_carpet.battery_level()
 
 # display menu, get choice, run function
-# need to send object into dictionary menu choice somehow?
 game_play.play_menu(user_carpet)
 
 

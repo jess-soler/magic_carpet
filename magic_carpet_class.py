@@ -11,21 +11,41 @@ from time import sleep
 
 
 #--------------------------ADDITIONS TO CONSIDER FOR MY GITHUB OVER THE SUMMER-----------------------------------#
-
-# Things I can add to the game:
 # different styles of carpets (persian, jute, etc.)
 # do the different styles of carpets have different attributes?
 
 # enchantment levels that can be added to the carpet to make it fly faster, higher, etc.
 # obstacles (birds, clouds, UFO, airplane, etc.)
 # weather (sunny, rainy, snowy, etc.)
+# maximum of passengers allowed, or more energy needed for more passengers
 
-# things I can add:
-# console bar to show current energy levels
 # if energy is too low, you can't take off
 # if energy is too low, you can't adjust altitude
 # if energy is too low, you can't adjust speed
 # number of passengers affects energy level
+
+# if altitude is at a certain level, you can/can't see things (ground, sky, clouds)
+# if altitude is at a certain level, you have to adjust speed
+# crashing because your altitude/speed ratios are not correct
+# if your energy level is too low, you can't adjust altitude
+
+# crash landing
+# speed and altitude have to be at certain levels to land
+# if energy is too low, emergency landing
+
+# if speed is too high, you can't adjust altitude
+# if speed is too high, you can't land
+# if speed is too low, you can't take off
+# if speed is too low, you can't adjust altitude
+# if speed is too low, you can't land
+# if energy is too low, you can't adjust speed
+
+
+
+
+
+
+
 
 
 #TODO:
@@ -46,7 +66,6 @@ from time import sleep
 
 # --------------------------IMPORTS-----------------------------------#
 from rich.console import Console
-from rich.progress import Progress
 from rich.progress import track
 import game_play
 import utils
@@ -69,14 +88,15 @@ class self:
 #---------------------------MAGIC CARPET MENU METHODS---------------------------------#
     def take_off(self):
         """ Method to take off the magic carpet """
-        console.print(f"{self.pilot_name} is ready to take off.")
-        console.print("Please keep your arms and legs inside the magic carpet at all times.")
-        console.print("The magic carpet is taking off.")
         
-        # things I can add:
-        # if you have too many passengers, you can't take off
-        # destination
-        # check for enough energy to take off
+        if self.current_battery < 50:
+            console.print("Your battery level is too low. You must recharge.")
+            game_play.play_menu(self)
+            
+        else:
+            console.print(f"{self.pilot_name} is ready to take off.")
+            console.print("Please keep your arms and legs inside the magic carpet at all times.")
+            console.print("The magic carpet is taking off.")
         
         game_play.play_menu(self)
     
@@ -93,13 +113,6 @@ class self:
         else:
             console.print("Invalid input. Please try again.")
             self.altitude()
-            
-        # things I can add:
-        # if altitude is at a certain level, you can/can't see things (ground, sky, clouds)
-        # if altitude is at a certain level, you have to adjust speed
-        # crashing because your altitude/speed ratios are not correct
-        # if your energy level is too low, you can't adjust altitude
-
 
         game_play.play_menu(self)
         
@@ -107,11 +120,7 @@ class self:
     def land(self):
         """ Method to land the magic carpet """
         console.print("The magic carpet is landing.")
-        
-        # things I can add:
-        # crash landing
-        # speed and altitude have to be at certain levels to land
-        # if energy is too low, emergency landing
+        console.print(f"Welcome to the {self.destination_description}.")
         
         game_play.play_menu(self)
 
@@ -119,14 +128,16 @@ class self:
     def speed(self):
         """ Method to adjust the speed of the magic carpet """
         console.print("The magic carpet is adjusting its speed.")
+
+        input = utils.get_int("Please press 1 to increase speed or 2 to decrease speed: ")
         
-        # things I can add:
-        # if speed is too high, you can't adjust altitude
-        # if speed is too high, you can't land
-        # if speed is too low, you can't take off
-        # if speed is too low, you can't adjust altitude
-        # if speed is too low, you can't land
-        # if energy is too low, you can't adjust speed
+        if input == 1:
+            console.print("The magic carpet is increasing its speed.")
+        elif input == 2:
+            console.print("The magic carpet is decreasing its speed.")
+        else:
+            console.print("Invalid input. Please try again.")
+            self.altitude()
         
         game_play.play_menu(self)
 
@@ -188,7 +199,6 @@ class self:
         console.print("4. Forest")
         console.print("5. City")
         console.print("6. Countryside")
-        #console.print("7. Home")
         
         # get user input
         self.destination = utils.get_int("\nPlease select a destination from the list: ")
@@ -196,28 +206,34 @@ class self:
         # determine if there is enough energy
         if self.current_battery < 50:
             console.print("Your battery level is too low. You must recharge.")
-            game_play.play_menu(self)
         elif self.destination == 1 and self.current_battery == 100:
             console.print("You have selected the Mountains.")
             console.print("Please prepare of take off.")
+            self.determine_destination()
         elif self.destination == 2 and self.current_battery >= 90:
             console.print("You have selected the Beach.")
             console.print("Please prepare of take off.")
+            self.determine_destination()
         elif self.destination == 3 and self.current_battery >= 80:
             console.print("You have selected the Desert.")
             console.print("Please prepare of take off.")
+            self.determine_destination()
         elif self.destination == 4 and self.current_battery >= 70:
             console.print("You have selected the Forest.")
             console.print("Please prepare of take off.")
+            self.determine_destination()
         elif self.destination == 5 and self.current_battery >= 60:
             console.print("You have selected the City.")
             console.print("Please prepare of take off.")
+            self.determine_destination()
         elif self.destination == 6 and self.current_battery >= 50:
             console.print("You have selected the Countryside.")
             console.print("Please prepare of take off.")
+            self.determine_destination()
         else:
             console.print("Your battery level is too low for this destination. Please recharge.")
-            game_play.play_menu(self)
+            
+        
         
         game_play.play_menu(self)
 
@@ -286,7 +302,72 @@ class self:
         self.current_battery = self.random_battery
         
         return self.current_battery
-
+    
+#------------------------------------DETERMINE DESTINATION---------------------------------------------#
+    def determine_destination(self):
+        """ Method to determine which destination the magic carpet will fly to """
+        
+        if self.destination == 1:
+            self.destination_description = "Mountains"
+        elif self.destination == 2:
+            self.destination_description = "Beach"
+        elif self.destination == 3:
+            self.destination_description = "Desert"
+        elif self.destination == 4:
+            self.destination_description = "Forest"
+        elif self.destination == 5:
+            self.destination_description = "City"
+        else:
+            self.destination_description = "Countryside"
+        
+        return self.destination_description
+        
+        
+#------------------------------------NEW ENERGY---------------------------------------------#
+    # def new_energy(self):
+    #     """ Method to subtract energy requirements to fly to selected destination """
+        
+    #     # display destinations
+    #     console.print("You must now pick a destination for your magic carpet.")
+    #     console.print("\nThe magic carpet has the following destinations:")
+    #     console.print("1. Mountains")
+    #     console.print("2. Beach")
+    #     console.print("3. Desert")
+    #     console.print("4. Forest")
+    #     console.print("5. City")
+    #     console.print("6. Countryside")
+    #     #console.print("7. Home")
+        
+    #     # get user input
+    #     self.destination = utils.get_int("\nPlease select a destination from the list: ")
+        
+    #     # determine if there is enough energy
+    #     if self.current_battery < 50:
+    #         console.print("Your battery level is too low. You must recharge.")
+    #         game_play.play_menu(self)
+    #     elif self.destination == 1 and self.current_battery == 100:
+    #         console.print("You have selected the Mountains.")
+    #         console.print("Please prepare of take off.")
+    #     elif self.destination == 2 and self.current_battery >= 90:
+    #         console.print("You have selected the Beach.")
+    #         console.print("Please prepare of take off.")
+    #     elif self.destination == 3 and self.current_battery >= 80:
+    #         console.print("You have selected the Desert.")
+    #         console.print("Please prepare of take off.")
+    #     elif self.destination == 4 and self.current_battery >= 70:
+    #         console.print("You have selected the Forest.")
+    #         console.print("Please prepare of take off.")
+    #     elif self.destination == 5 and self.current_battery >= 60:
+    #         console.print("You have selected the City.")
+    #         console.print("Please prepare of take off.")
+    #     elif self.destination == 6 and self.current_battery >= 50:
+    #         console.print("You have selected the Countryside.")
+    #         console.print("Please prepare of take off.")
+    #     else:
+    #         console.print("Your battery level is too low for this destination. Please recharge.")
+    #         game_play.play_menu(self)
+        
+    #     game_play.play_menu(self)
 
 
 
