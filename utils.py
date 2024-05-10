@@ -53,15 +53,6 @@ def subtitle(statement):
     
     return "\n"
 
-#------------------------SUBTITLE FUNCTION-------------------------------#
-def subtitle_2(statement):
-
-    # create the console object
-    console = Console()
-    
-    console.print(f"[light blue]{statement}[/light blue]", style="bold", justify="center")
-    
-    return "\n"
 #------------------------GET INTEGER FUNCTION-------------------------------#
 def get_int(prompt):
     """Get an integer from the user with try catch

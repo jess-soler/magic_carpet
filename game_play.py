@@ -11,7 +11,7 @@ from rich.console import Console
 import utils
 from magic_carpet_class import self
 
-utils.subtitle = Console()
+console = Console()
 
 #---------------------------STORYLINE---------------------------------#
 
@@ -32,7 +32,7 @@ def intro():
 #------------------------------GET INPUT-----------------------------------#
 def get_input():
     # GET INPUT FROM USER
-    utils.subtitle_2("\nPlease provide the following information:")
+    console.print("\n[bold blue]Please provide the following information:[/bold blue]")
     pilot_name = utils.get_string("\nWhat is your name? ")
     occupancy = utils.get_int("How many passengers are you taking? ")
     color = utils.get_string("What color is your magic carpet? ")
@@ -46,15 +46,15 @@ def get_input():
 #------------------------------STORY LINE-----------------------------------#
 def story_line():
     # STORY LINE
-    utils.subtitle("\nYour magic carpet is preparing for take off.")
-    utils.subtitle("You must check the battery level of your magic carpet.")
-    utils.subtitle_2("\nIf your battery level is at 100%, you can fly for 2 hours.")
-    utils.subtitle_2("If your battery level is at 90%, you can fly for 1.5 hours.")
-    utils.subtitle_2("If your battery level is at 80%, you can fly for 1 hour.")
-    utils.subtitle_2("If your battery level is at 70%, you can fly for 45 minutes.")
-    utils.subtitle_2("If your battery level is at 60%, you can fly for 30 minutes.")
-    utils.subtitle_2("If your battery level is at 50%, you can fly for 15 minutes.")
-    utils.subtitle_2("If your battery level is below 50%, you must recharge.")
+    console.print("\nYour magic carpet is preparing for take off.")
+    console.print("You must check the battery level of your magic carpet.")
+    console.print("\nIf your battery level is at 100%, you can fly for 2 hours.")
+    console.print("If your battery level is at 90%, you can fly for 1.5 hours.")
+    console.print("If your battery level is at 80%, you can fly for 1 hour.")
+    console.print("If your battery level is at 70%, you can fly for 45 minutes.")
+    console.print("If your battery level is at 60%, you can fly for 30 minutes.")
+    console.print("If your battery level is at 50%, you can fly for 15 minutes.")
+    console.print("If your battery level is below 50%, you must recharge.")
         
     # return to main
     return "\n"
@@ -68,15 +68,15 @@ def story_line():
 def display_menu():
     
     #print menu options
-    utils.subtitle_2("\nMenu Options:")
-    utils.subtitle("1. Check Energy Level")
-    utils.subtitle("2. Recharge")
-    utils.subtitle("3. Pick A Destination")
-    utils.subtitle("4. Take Off")
-    utils.subtitle("5. Adjust Speed")
-    utils.subtitle("6. Adjust Altitude")
-    utils.subtitle("7. Land")
-    utils.subtitle("8. Exit")
+    console.print("\n[bold blue]Menu Options:[/bold blue]")
+    console.print("1. Check Energy Level")
+    console.print("2. Recharge")
+    console.print("3. Pick A Destination")
+    console.print("4. Take Off")
+    console.print("5. Adjust Speed")
+    console.print("6. Adjust Altitude")
+    console.print("7. Land")
+    console.print("8. Exit")
     
     menu_choice = utils.get_int("\nPlease select an option from the menu: ")
     return menu_choice
@@ -102,7 +102,7 @@ def run_menu(user_carpet, menu_choice):
         menu[menu_choice]()
         
     else:
-        utils.subtitle("Invalid choice. Please try again.")
+        console.print("Invalid choice. Please try again.")
         play_menu(user_carpet)
         
 #------------------------------PLAY MENU-----------------------------------#

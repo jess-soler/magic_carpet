@@ -5,7 +5,12 @@
     This file is the main file that runs the application.
     OOP Final Project: Vehicle
 """
+import utils
 import game_play
+
+# import the rich library
+from rich.console import Console
+from rich.panel import Panel
 
 
 #--------------------------PROGRAM STARTS HERE-----------------------------------
