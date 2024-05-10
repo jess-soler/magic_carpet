@@ -7,6 +7,10 @@
 """
 # import sleep from datetime
 from time import sleep
+# import the rich library
+from rich.console import Console
+
+console = Console()
 
 
 
@@ -42,25 +46,6 @@ from time import sleep
 
 
 
-
-
-
-
-
-
-#TODO:
-# EACH TIME YOU FLY== SUBTRACT FROM THE BATERY LEVEL
-# EACH TIME YOU FLY YOU MUST CHECK IF YOU HAVE ENOUGH BATTERY
-# must be certain speed and altitude to land
-
-# take off
-#   list destinations and battery required
-#   can only go from home to destination
-#   subtract battery level required to get to destination
-
-# adjust speed and altitude
-# land 
-
         
 
 
@@ -84,19 +69,19 @@ class self:
         # initialize variables
         self.random_battery = 0
         self.current_battery = 0
+        self.destination_picked = False
         
 #---------------------------MAGIC CARPET MENU METHODS---------------------------------#
     def take_off(self):
         """ Method to take off the magic carpet """
+        while self.destination_picked == False:
+            console.print("You must pick a destination before taking off.")
+            self.destination()
         
-        if self.current_battery < 50:
-            console.print("Your battery level is too low. You must recharge.")
-            game_play.play_menu(self)
-            
-        else:
-            console.print(f"{self.pilot_name} is ready to take off.")
-            console.print("Please keep your arms and legs inside the magic carpet at all times.")
-            console.print("The magic carpet is taking off.")
+        
+        console.print(f"{self.pilot_name} is ready to take off.")
+        console.print("Please keep your arms and legs inside the magic carpet at all times.")
+        console.print("The magic carpet is taking off.")
         
         game_play.play_menu(self)
     
@@ -121,6 +106,8 @@ class self:
         """ Method to land the magic carpet """
         console.print("The magic carpet is landing.")
         console.print(f"Welcome to the {self.destination_description}.")
+        
+        self.destination_picked = False
         
         game_play.play_menu(self)
 
@@ -206,32 +193,53 @@ class self:
         # determine if there is enough energy
         if self.current_battery < 50:
             console.print("Your battery level is too low. You must recharge.")
+            self.destination_picked = False
+            
         elif self.destination == 1 and self.current_battery == 100:
             console.print("You have selected the Mountains.")
             console.print("Please prepare of take off.")
             self.determine_destination()
+            self.current_battery = self.current_battery - 100
+            self.destination_picked = True
+            
         elif self.destination == 2 and self.current_battery >= 90:
             console.print("You have selected the Beach.")
             console.print("Please prepare of take off.")
             self.determine_destination()
+            self.current_battery = self.current_battery - 90
+            self.destination_picked = True
+            
         elif self.destination == 3 and self.current_battery >= 80:
             console.print("You have selected the Desert.")
             console.print("Please prepare of take off.")
             self.determine_destination()
+            self.current_battery = self.current_battery - 80
+            self.destination_picked = True
+            
         elif self.destination == 4 and self.current_battery >= 70:
             console.print("You have selected the Forest.")
             console.print("Please prepare of take off.")
             self.determine_destination()
+            self.current_battery = self.current_battery - 70
+            self.destination_picked = True
+            
         elif self.destination == 5 and self.current_battery >= 60:
             console.print("You have selected the City.")
             console.print("Please prepare of take off.")
             self.determine_destination()
+            self.current_battery = self.current_battery - 60
+            self.destination_picked = True
+            
         elif self.destination == 6 and self.current_battery >= 50:
             console.print("You have selected the Countryside.")
             console.print("Please prepare of take off.")
             self.determine_destination()
+            self.current_battery = self.current_battery - 50
+            self.destination_picked = True
+            
         else:
             console.print("Your battery level is too low for this destination. Please recharge.")
+            self.destination_picked = False
             
         
         
@@ -302,6 +310,16 @@ class self:
         self.current_battery = self.random_battery
         
         return self.current_battery
+#---------------------------------------CHECK BATTERY LEVEL-----------------------------------#
+    def check_battery_level(self):
+        """ Method to check the battery level of the magic carpet """
+
+        console.print(f"Your magic carpet's battery level is at {self.current_battery}%.")
+        
+        keep_playing = input("Press Enter to continue: ")
+        print(keep_playing)
+        
+        game_play.play_menu(self)
     
 #------------------------------------DETERMINE DESTINATION---------------------------------------------#
     def determine_destination(self):
@@ -322,56 +340,3 @@ class self:
         
         return self.destination_description
         
-        
-#------------------------------------NEW ENERGY---------------------------------------------#
-    # def new_energy(self):
-    #     """ Method to subtract energy requirements to fly to selected destination """
-        
-    #     # display destinations
-    #     console.print("You must now pick a destination for your magic carpet.")
-    #     console.print("\nThe magic carpet has the following destinations:")
-    #     console.print("1. Mountains")
-    #     console.print("2. Beach")
-    #     console.print("3. Desert")
-    #     console.print("4. Forest")
-    #     console.print("5. City")
-    #     console.print("6. Countryside")
-    #     #console.print("7. Home")
-        
-    #     # get user input
-    #     self.destination = utils.get_int("\nPlease select a destination from the list: ")
-        
-    #     # determine if there is enough energy
-    #     if self.current_battery < 50:
-    #         console.print("Your battery level is too low. You must recharge.")
-    #         game_play.play_menu(self)
-    #     elif self.destination == 1 and self.current_battery == 100:
-    #         console.print("You have selected the Mountains.")
-    #         console.print("Please prepare of take off.")
-    #     elif self.destination == 2 and self.current_battery >= 90:
-    #         console.print("You have selected the Beach.")
-    #         console.print("Please prepare of take off.")
-    #     elif self.destination == 3 and self.current_battery >= 80:
-    #         console.print("You have selected the Desert.")
-    #         console.print("Please prepare of take off.")
-    #     elif self.destination == 4 and self.current_battery >= 70:
-    #         console.print("You have selected the Forest.")
-    #         console.print("Please prepare of take off.")
-    #     elif self.destination == 5 and self.current_battery >= 60:
-    #         console.print("You have selected the City.")
-    #         console.print("Please prepare of take off.")
-    #     elif self.destination == 6 and self.current_battery >= 50:
-    #         console.print("You have selected the Countryside.")
-    #         console.print("Please prepare of take off.")
-    #     else:
-    #         console.print("Your battery level is too low for this destination. Please recharge.")
-    #         game_play.play_menu(self)
-        
-    #     game_play.play_menu(self)
-
-
-
-
-
-
-    

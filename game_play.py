@@ -86,7 +86,7 @@ def run_menu(user_carpet, menu_choice):
     
     #dictionary for menu options
     menu = {
-        1: user_carpet.battery_level,
+        1: user_carpet.check_battery_level,
         2: user_carpet.recharge,
         3: user_carpet.destination,
         4: user_carpet.take_off,

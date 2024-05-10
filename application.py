@@ -25,7 +25,6 @@ user_carpet = game_play.get_input()
 game_play.story_line()
 
 battery = user_carpet.battery_level()
-
 # display menu, get choice, run function
 game_play.play_menu(user_carpet)
 
